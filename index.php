@@ -1,6 +1,11 @@
 <?php
 include 'partials/header.php';
 include 'partials/notifications.php';
+include 'config/database.php';
+
+$database = new database();
+
+$db = $database->connect();
 ?>
 
 <!-- Main Content Container -->

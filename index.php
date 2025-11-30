@@ -2,14 +2,22 @@
 include 'partials/header.php';
 include 'partials/notifications.php';
 include 'config/database.php';
+include 'classes/task.php';
 
 $database = new database();
 
 $db = $database->connect();
 
+//to create object out of our class
+$todo = new Task($db);
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   if(isset($_POST['add_task'])){
+
+   $todo->task = $_POST['task'];
+   $todo->create();
   }
 }
 ?>

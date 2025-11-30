@@ -23,7 +23,6 @@ class database
             if ($this->conn->connect_error) {
                 die("Connection failed" . $this->conn->connect_error);
             }
-            echo 'connected';
             
         } catch (Exception $error) {
 

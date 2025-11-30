@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Todo App</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-
-<!-- Notification Container -->
-<div class="notification-container">
-    <div class="notification success">
-        <!-- Success message will go here -->
-    </div>
-</div>
+<?php
+include 'partials/header.php';
+include 'partials/notifications.php';
+?>
 
 <!-- Main Content Container -->
 <div class="container">
@@ -35,7 +23,7 @@
                     <input type="hidden" name="id" value="1">
                     <button class="complete" type="submit" name="complete_task">Complete</button>
                 </form>
-                
+
                 <!-- Undo Completed Task -->
                 <form method="POST" style="display:inline;">
                     <input type="hidden" name="id" value="1">
@@ -69,5 +57,6 @@
     </ul>
 </div>
 
-</body>
-</html>
+<?php
+include 'partials/footer.php';
+?>

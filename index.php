@@ -21,19 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $todo->create();
         $_SESSION['message'] = "Task added successfully";
         $_SESSION['msg_type'] = "success";
-
     } elseif (isset($_POST['complete_task'])) {
 
         $todo->complete($_POST['id']);
         $_SESSION['message'] = "Task marked completed";
         $_SESSION['msg_type'] = "success";
-
     } elseif (isset($_POST['undo_complete_task'])) {
 
         $todo->undoComplete($_POST['id']);
         $_SESSION['message'] = "Task marked incomplete";
         $_SESSION['msg_type'] = "success";
-
     } elseif (isset($_POST['delete_task'])) {
 
         $todo->delete($_POST['id']);
@@ -48,9 +45,11 @@ $tasks = $todo->read();
 <!-- Notification center -->
 <?php if (isset($_SESSION['message'])): ?>
 
-    <div class="notification-container">
+    <div class="notification-container <?php echo isset($_SESSION['message']) ? "show" : ''; ?> ">
         <div class="notification <?php echo $_SESSION['msg_type']; ?>">
             <?php echo $_SESSION['message']; ?>
+            <?php  unset($_SESSION['message']); ?>
+
         </div>
     </div>
 
@@ -90,7 +89,7 @@ $tasks = $todo->read();
                     <?php endif; ?>
 
                     <!-- Delete Task -->
-                    <form method="POST" style="display:inline;">
+                    <form onsubmit="return confirmDelete()" method="POST" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                         <button class="delete" type="submit" name="delete_task">Delete</button>
                     </form>
@@ -100,6 +99,11 @@ $tasks = $todo->read();
     </ul>
 </div>
 
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete?")
+    }
+</script>
 <?php
 include 'partials/footer.php';
 ?>

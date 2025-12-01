@@ -23,5 +23,11 @@ class Task {
         return $stmt->execute();
     }
 
+    public function read() {
+        $query = " SELECT * FROM ". $this->table. " ORDER BY created_at DESC ";
+        $result = $this->conn->query($query);
+        return $result;
+    }
+
 
 }

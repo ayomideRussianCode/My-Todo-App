@@ -21,10 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif(isset($_POST['complete_task'])){
 
         $todo->complete($_POST['id']);
+        
     } elseif(isset($_POST['undo_complete_task'])) {
 
         $todo->undoComplete($_POST['id']);
-        var_dump($_POST['id']);     
+
+    } elseif (isset($_POST['delete_task'])) {
+
+        $todo->delete($_POST['id']);
+        var_dump($_POST['id']);
     }
 }
 
